@@ -1,9 +1,9 @@
-import dotenv from "dotenv";
-import express from "express";
-import router from "./Routes/routes";
-import connectDB from "./database/db";
-import swaggerUi from "swagger-ui-express";
-import swaggerDocument from "../swagger.json"
+import dotenv from 'dotenv';
+import express from 'express';
+import swaggerUi from 'swagger-ui-express';
+import router from './Routes/routes';
+import connectDB from './database/db';
+import swaggerDocument from '../swagger.json';
 
 const app = express();
 dotenv.config();
@@ -11,8 +11,8 @@ dotenv.config();
 const port: number = 3000;
 
 app.use(express.json());
-app.use("/", router);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+app.use('/', router);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const start = async () => {
   try {
