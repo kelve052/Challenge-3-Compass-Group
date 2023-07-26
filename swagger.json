@@ -1,0 +1,451 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API veterinary",
+    "description": "This is a veterinary API, using mongoDB, with GET POST PUT and DELETE features, both for tutors and pets, with implemented authentication functionality, being mandatory in almost all routes",
+    "contact": {
+      "name": "Support",
+      "email": "kelveoliveira052@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/auth":{
+      "post":{
+        "tags": ["Auth"],
+        "description": "Create token",
+        "requestBody": {
+          "description": "data needed to create token",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BodyCreateToken"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description": "access_token: {token}"
+          },
+          "400": {
+            "description": "Email or password error"
+          }
+        }
+      }
+    },
+    "/tutors": {
+      "get":{
+        "tags": ["Tutor"],
+        "description": "Registered tutors",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200":{
+            "description": "Registered tutors",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "array",
+                  "items":{
+                    "$ref":"#/components/schemas/ResponseTutor"
+                  }
+                }
+              }
+            }
+          },
+          "400":{
+            "description": "error when searching for tutors"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Tutor"],
+        "description": "create new tutor",
+        "requestBody": {
+          "description": "data needed to create the tutor",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BodyCreateTutor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+            "description": "Successfully created tutor",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ResponseTutor"
+                }
+              }
+            }
+          },
+          "400":{
+            "description": "Failed to create tutor"
+          }
+        }
+      }
+    },
+    "/tutor/{id}":{
+      "put":{
+        "tags": ["Tutor"],
+        "description": "Update tutor",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters":[{
+          "name": "id",
+          "in": "path",
+          "description": "Id belonging to a tutor",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }],
+        "requestBody": {
+          "description": "data needed to update the tutor",
+          "content":{
+            "application/json":{
+              "schema": {
+                "$ref":"#/components/schemas/BodyUpdateTutor"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description": "Msg: Update Sucefull",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "$ref":"#/components/schemas/ResponseTutor"
+                }
+              }
+            }
+          },
+          "400":{
+            "description": "update failed"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Tutor"],
+        "description": "Delte tutor",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters":[{
+          "name": "id",
+          "in": "path",
+          "description": "Id belonging to a tutor",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }],
+        "responses":{
+          "204":{
+
+          },
+          "400":{
+            "description": "Error deleting"
+          }
+        }
+      }
+    },
+    "/pet/{tutorId}":{
+      "post":{
+        "tags": ["Pet"],
+        "description": "Create new pet",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters":[{
+          "name": "tutorId",
+          "in": "path",
+          "description": "Id belonging to a tutor",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }],
+        "requestBody": {
+          "description": "data needed to create the pet",
+          "content":{
+            "application/json":{
+              "schema": {
+                "$ref":"#/components/schemas/BodyCreatePet"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200": {
+            "description": "Create pet sucefull",
+            "content":{
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BodyCreatePet"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failed to CREATE pet"
+          }
+        }
+      }
+    },
+    "/pet/{petId}/tutor/{tutorId}":{
+      "put":{
+        "tags": ["Pet"],
+        "description": "Update pet",
+        "security":[{
+          "bearerAuth": []
+        }],
+        "parameters":[{
+          "name": "petId",
+          "in": "path",
+          "description": "Id belonging to a pet",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        },
+        {
+          "name": "tutorId",
+          "in": "path",
+          "description": "Id belonging to a tutor",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }],
+        "requestBody": {
+          "description": "data needed to update the pet",
+          "content":{
+            "application/json":{
+              "schema": {
+                "$ref":"#/components/schemas/BodyCreatePet"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description": "Update pet sucefull",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "$ref":"#/components/schemas/BodyCreatePet"
+                }
+              }
+            }
+          },
+          "400":{
+            "description": "Failed to UPDATE pet"
+          }
+        }
+      },
+      "delete":{
+        "tags": ["Pet"],
+        "description": "Delte pet",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters":[{
+          "name": "petId",
+          "in": "path",
+          "description": "Id belonging to a pet",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }, {
+          "name": "tutorId",
+          "in": "path",
+          "description": "Id belonging to a tutor",
+          "required": true,
+          "type": "string",
+          "format": "uuid"
+        }],
+        "responses":{
+          "200":{},
+          "400":{
+            "description": "Error deleting pet"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BodyCreateToken":{
+        "type": "object",
+        "properties":{
+          "email":{
+            "type": "string",
+            "description": "email belonging to a tutor",
+            "example": "jonas@paidepet.com"
+          },
+          "password":{
+            "type": "string",
+            "description": "tutor password that has the email entered",
+            "example": "p#llk145$"
+          }
+        }
+      },
+      "BodyCreateTutor": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "name to be entered in tutor",
+            "example": "Alex Abreu"
+          },
+          "password": {
+            "type": "string",
+            "description": "password to be created",
+            "example": "p#llk145$"
+          },
+          "phone": {
+            "type": "number",
+            "description": "phone to be created",
+            "example": 69993638638
+          },
+          "email": {
+            "type": "string",
+            "description": "email to be created",
+            "example": "jonas@paidepet.com"
+          },
+          "date_of_birth": {
+            "type": "string",
+            "format": "date",
+            "description": "date of birthday to be inserted in tutor",
+            "example": "2000-12-12"
+          },
+          "zip_code": {
+            "type": "number",
+            "description": "zip code to be inserted in tutor",
+            "example": 61760000
+          }
+        }
+      },
+      "BodyUpdateTutor": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "name to be entered in tutor",
+            "example": "Alex Abreu"
+          },
+          "phone": {
+            "type": "number",
+            "description": "phone to be created",
+            "example": 69993638638
+          },
+          "email": {
+            "type": "string",
+            "description": "email to be created",
+            "example": "jonas@paidepet.com"
+          },
+          "date_of_birth": {
+            "type": "string",
+            "format": "date",
+            "description": "date of birthday to be inserted in tutor",
+            "example": "2000-12-12"
+          },
+          "zip_code": {
+            "type": "number",
+            "description": "zip code to be inserted in tutor",
+            "example": 61760000
+          }
+        }
+      },
+      "ResponseTutor": {
+        "type": "object",
+        "properties": {
+          "id":{
+            "type": "string",
+            "description": "ID Tutor",
+            "format": "uuid"
+          }, 
+          "name": {
+            "type": "string",
+            "description": "name to be entered in tutor",
+            "example": "Alex Abreu"
+          },
+          "phone": {
+            "type": "number",
+            "description": "phone to be created",
+            "example": 69993638638
+          },
+          "email": {
+            "type": "string",
+            "description": "email to be created",
+            "example": "jonas@paidepet.com"
+          },
+          "date_of_birth": {
+            "type": "string",
+            "format": "date",
+            "description": "date of birthday to be inserted in tutor",
+            "example": "2000-12-12"
+          },
+          "zip_code": {
+            "type": "number",
+            "description": "zip code to be inserted in tutor",
+            "example": 61760000
+          }
+        }
+      },
+      "BodyCreatePet":{
+        "type": "object",
+        "properties": {
+          "name":{
+            "type": "string",
+            "description": "Name pet",
+            "example": "Nina"
+          },
+          "species":{
+            "type": "string",
+            "description": "species pet",
+            "example": "dog"
+          },
+          "carry":{
+            "type": "string",
+            "description": "carry pet",
+            "example": "p"
+          },
+          "weight":{
+            "type": "number",
+            "description": "weight pet",
+            "example": 5
+          },
+          "date_of_birth":{
+            "type": "date",
+            "description": "pet's date of birth",
+            "example": "1993-12-12"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth":{
+        "description": "JWT authentication",
+      "type": "http",
+      "scheme": "bearer",
+      "bearerFormat": "JWT"
+      }
+    }
+  }
+}
