@@ -8,6 +8,7 @@
     "start": "nodemon --exec ts-node src/app.ts",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "eslint src --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
     "dev": "nodemon --exec ts-node src/app.ts"
   },
   "repository": {
@@ -42,6 +43,7 @@
     "@typescript-eslint/parser": "^6.2.0",
     "eslint": "^8.45.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.27.5"
+    "eslint-plugin-import": "^2.27.5",
+    "prettier": "^3.0.0"
   }
 }
