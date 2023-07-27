@@ -44,7 +44,11 @@ class UserRepositoryTutors {
       throw new Error('missing or incorrect body fields');
     }
     return {
-      name, phone, email, dateOfBirth, zipCode,
+      name,
+      phone,
+      email,
+      dateOfBirth,
+      zipCode,
     };
   }
 

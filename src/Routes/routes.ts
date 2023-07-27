@@ -7,10 +7,7 @@ import authentication from '../middleware/authMiddleware';
 const router = express.Router();
 
 // rotas tutor
-router
-  .route('/tutors')
-  .get(authentication, tutroControllers.TutorsGet)
-  .post(tutroControllers.TutorsPost);
+router.route('/tutors').get(authentication, tutroControllers.TutorsGet).post(tutroControllers.TutorsPost);
 router
   .route('/tutor/:id')
   .delete(authentication, tutroControllers.TutorDelete)
