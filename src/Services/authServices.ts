@@ -1,10 +1,10 @@
 import UserRepositoryAuth from '../Repositories/repository';
 
-const repositoryAuth = new UserRepositoryAuth.UserRepositoryAuth();
+const RepositoryAuth = new UserRepositoryAuth.UserRepositoryAuth();
 
 const authenticateUserServices = async (email: string, password: string) => {
   try {
-    await repositoryAuth.authenticateUser(email, password);
+    await RepositoryAuth.authenticateUser(email, password);
   } catch (error) {
     throw error;
   }

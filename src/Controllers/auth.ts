@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import authenticateUserServices from '../Services/authServices';
+import AuthenticateUserServices from '../Services/authServices';
 
 const auth = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -8,7 +8,7 @@ const auth = async (req: Request, res: Response) => {
     res.status(400).json({ Msg: 'Email or password error' });
   } else {
     try {
-      await authenticateUserServices(email, password);
+      await AuthenticateUserServices(email, password);
       const token = jwt.sign({ email, password }, process.env.JWT_SECRET!, {
         expiresIn: '30d',
       });

@@ -18,8 +18,10 @@ const start = async () => {
   try {
     // connectDB
     await connectDB(process.env.MONGO_URI!);
+    // eslint-disable-next-line
     app.listen(port, () => console.log(`Server is listening port ${port}...`));
   } catch (error) {
+    // eslint-disable-next-line
     console.log(error);
   }
 };

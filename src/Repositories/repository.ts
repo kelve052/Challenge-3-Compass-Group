@@ -38,13 +38,13 @@ class UserRepositoryTutors {
 
   async bodyValidation(body: any) {
     const {
-      name, phone, email, date_of_birth, zip_code,
+      name, phone, email, dateOfBirth, zipCode,
     } = body;
-    if (!name || !phone || !email || !date_of_birth || !zip_code) {
+    if (!name || !phone || !email || !dateOfBirth || !zipCode) {
       throw new Error('missing or incorrect body fields');
     }
     return {
-      name, phone, email, date_of_birth, zip_code,
+      name, phone, email, dateOfBirth, zipCode,
     };
   }
 
@@ -59,7 +59,7 @@ class UserRepositoryTutors {
 
   async petInTutor(idTutor: string) {
     await tutorSchema.findById(idTutor).then((tutor) => {
-      if (!(tutor?.pets.length == 0)) {
+      if (!(tutor?.pets.length === 0)) {
         throw new Error('Unable to delete an existing owner with pets');
       }
     });
@@ -134,7 +134,7 @@ class UserRepositoryAuth {
   async authenticateUser(email: string, password: string) {
     try {
       await tutorSchema.findOne({ email }).then((tutor) => {
-        if (!(tutor?.password == password)) {
+        if (!(tutor?.password === password)) {
           throw new Error('Incorrect email or password fields');
         }
       });
