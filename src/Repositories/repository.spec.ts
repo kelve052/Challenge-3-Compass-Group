@@ -3,7 +3,8 @@ const RepositoryTutors = Repository.UserRepositoryTutors
 
 jest.mock('../Model/modelTutor', ()=>({
   findById: (idTutor: string)=>{
-    if (!idTutor) {
+    const id = 'ba6cf261-b33f-431f-91f8-74dd0403e571'
+    if (idTutor != id) {
       throw new Error('Nehym tutor with informed id');
     }
     return {id: idTutor};
@@ -18,6 +19,10 @@ describe('Test Tutor: put', () => {
     expect(response).toBe('ba6cf261-b33f-431f-91f8-74dd0403e571')
   })
 
+  it('existsTutor - ERROR', async()=>{  //Error
+    await expect(new RepositoryTutors().existsTutor("id-fake")).rejects.toThrow('Nehym tutor with informed id');
+  })
+
   it('bodyValidation( checks if all required fields exist )', async ()=>{
     const body = {name: "teste", phone:"6998568547", email: "teste@teste", dateOfBirth: "2000-12-12", zipCode: "61760000",}
     const response = await new RepositoryTutors().bodyValidation(body)
@@ -25,6 +30,12 @@ describe('Test Tutor: put', () => {
     const properties = ['name', 'phone', 'email', 'dateOfBirth', 'zipCode']
     properties.map((itens) => expect(response).toHaveProperty(itens)
     )
+  })
+
+  it('bodyValidation - ERROR', async ()=>{ //Error
+    const body = {name: "teste", phone:"6998568547", Fake: "teste@teste", dateOfBirth: "2000-12-12", Fake2: "61760000",}
+    await expect(new RepositoryTutors().bodyValidation(body)).rejects.toThrow('missing or incorrect body fields');
+
   })
 
   it('updateTutor', async ()=>{
