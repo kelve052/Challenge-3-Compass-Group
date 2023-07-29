@@ -26,7 +26,7 @@ describe("Test for DELETE method", () => {
         name: "Test tutor - DELETE",
         password: "12345",
         phone: "123456789",
-        email: "tutor@test.com",
+        email: "tutorDELETE@test.com",
         date_of_birth: "2000-12-12",
         zip_code: "12345",
       });
@@ -95,6 +95,5 @@ describe("Test for DELETE method", () => {
     expect(response.body).toEqual({
         Msg: 'incorrect token'
     });
-
   });
 });
