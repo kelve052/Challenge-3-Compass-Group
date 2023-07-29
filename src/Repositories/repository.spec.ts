@@ -2,6 +2,13 @@ import Repository from "./repository";
 const RepositoryTutors = Repository.UserRepositoryTutors
 
 jest.mock('../Model/modelTutor', ()=>({
+  find: ()=>{
+    try {
+      return [{name: "teste", phone: "54899..."}]
+    } catch (error) {
+      throw error
+    }
+  },
   findById: (idTutor: string)=>{
     const id = 'ba6cf261-b33f-431f-91f8-74dd0403e571'
     if (idTutor != id) {
@@ -11,6 +18,14 @@ jest.mock('../Model/modelTutor', ()=>({
   },
   findByIdAndUpdate: jest.fn()
 }))
+
+describe('Test Tutor: Get', ()=>{
+  it('getTutor ( select all tutors ) ', async ()=>{
+    const response = await new RepositoryTutors().getTutor()
+
+    expect(response).toBeInstanceOf(Array)
+  })
+})
 
 describe('Test Tutor: put', () => {
   it('existsTutor( check if tutor already exists )', async()=>{
