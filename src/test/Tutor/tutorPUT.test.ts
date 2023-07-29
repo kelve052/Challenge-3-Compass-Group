@@ -1,6 +1,6 @@
 import request from "supertest";
-import { app } from "../app";
-import { start, close } from "../server";
+import { app } from "../../app";
+import { start, close } from "../../server";
 
 describe("Test for PUT method on Tutors", () => {
   const authToken = "Bearer " + process.env.TOKEN!; // Make sure the token is in the .envconst authToken = "Bearer " + process.env.TOKEN!; // Make sure the token is in the .env
