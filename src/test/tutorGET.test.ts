@@ -3,23 +3,23 @@ import { app } from "../app";
 import { start, close } from "../server";
 
 describe("Test for GET method", () => {
-  const authToken = process.env.TOKEN!; // Make sure the token is in the .env
+  const authToken = "Bearer " + process.env.TOKEN!; // Make sure the token is in the .env
   let server: any;
 
   beforeAll((done) => {
-    start(3001);
+    server = start(3001);
     done();
   });
 
   afterAll((done) => {
-    close();
+    server = close();
     done();
   });
 
   it("Should return a list of tutors with authentication", async () => {
     const response = await request(app)
       .get("/tutors")
-      .set("Authorization", `Bearer ${authToken}`);
+      .set("Authorization", authToken);
     expect(response.status).toBe(200);
   });
 
