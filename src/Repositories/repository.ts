@@ -9,11 +9,11 @@ class UserRepositoryTutors {
 
   async emailExists(email: string) {
     try {
-      await tutorSchema.findOne({ email }).then((tutor) => {
-        if (tutor) {
-          throw new Error('email already belongs to a tutor');
-        }
-      });
+      const tutor = await tutorSchema.findOne({ email });
+      if (tutor) {
+        throw new Error('email already belongs to a tutor');
+      }
+      return null;
     } catch (error) {
       throw error;
     }

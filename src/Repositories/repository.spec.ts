@@ -9,6 +9,13 @@ jest.mock('../Model/modelTutor', ()=>({
       throw error
     }
   },
+  findOne: jest.fn((email: string) => {
+    const emailDb: string = 'teste@gmail.com.br';
+    if (email == emailDb) {
+      return Promise.reject(new Error('email already belongs to a tutor'));
+    }
+    return null;
+  }),
   findById: (idTutor: string)=>{
     const id = 'ba6cf261-b33f-431f-91f8-74dd0403e571'
     if (idTutor != id) {
@@ -26,6 +33,22 @@ describe('Test Tutor: Get', ()=>{
     expect(response).toBeInstanceOf(Array)
   })
 })
+
+
+describe('Test Tutor: Post', () => {
+  it('emailExists (check if any tutor already has the email)', async () => {
+    const email = 'teste222@gmail.com.br';
+    const response = await new RepositoryTutors().emailExists(email);
+    expect(response).toBe(null);
+  });
+
+  it('emailExists - ERROR', async () => {
+    const email = 'teste@gmail.com.br';
+    await expect(new RepositoryTutors().emailExists(email)).resolves.toBeNull();
+  });
+})
+
+
 
 describe('Test Tutor: put', () => {
   it('existsTutor( check if tutor already exists )', async()=>{
