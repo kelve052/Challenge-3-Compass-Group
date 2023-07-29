@@ -52,10 +52,13 @@ describe("Test for POST method on Pets", () => {
       weight: 5,
       date_of_birth: "2000-01-01",
     };
-    const response = await request(app).post(`/pet/${tutorId}`).set("Authorization", authToken).send(petData);
+    const response = await request(app)
+      .post(`/pet/${tutorId}`)
+      .set("Authorization", authToken)
+      .send(petData);
     petId = response.body.Pet._id;
 
-    expect (response.status).toBe(201);
+    expect(response.status).toBe(201);
   });
 
   it("Should return 400 with the incorrect fields", async () => {
@@ -66,9 +69,12 @@ describe("Test for POST method on Pets", () => {
       weight: "a",
       date_of_birth: "2000-01-01",
     };
-    const response = await request(app).post(`/pet/${tutorId}`).set("Authorization", authToken).send(petData);
+    const response = await request(app)
+      .post(`/pet/${tutorId}`)
+      .set("Authorization", authToken)
+      .send(petData);
 
-    expect (response.status).toBe(400);
+    expect(response.status).toBe(400);
   });
 
   it("Should return 400 if doesn't contain all fields", async () => {
@@ -78,20 +84,25 @@ describe("Test for POST method on Pets", () => {
       weight: "a",
       date_of_birth: "2000-01-01",
     };
-    const response = await request(app).post(`/pet/${tutorId}`).set("Authorization", authToken).send(petData);
+    const response = await request(app)
+      .post(`/pet/${tutorId}`)
+      .set("Authorization", authToken)
+      .send(petData);
 
-    expect (response.status).toBe(400);
+    expect(response.status).toBe(400);
   });
 
   it("Should return 400 with incorret ID", async () => {
-    const response = await request(app).post(`/pet/${tutorId + 1}`).set("Authorization", authToken);
+    const response = await request(app)
+      .post(`/pet/${tutorId + 1}`)
+      .set("Authorization", authToken);
     expect(response.status).toBe(400);
     expect(response.body).toEqual({
       Msg: "Failed to CREATE pet: No tutor with informed id",
     });
   });
 
-  it("Should return 401 if it does not have authentication", async () => {
+  it("Should return 400 if it does not have authentication", async () => {
     const response = await request(app).post(`/pet/${tutorId}`);
     expect(response.status).toBe(400);
     expect(response.body).toEqual({
