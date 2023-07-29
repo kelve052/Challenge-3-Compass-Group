@@ -7,7 +7,8 @@ jest.mock('../Model/modelTutor', ()=>({
       throw new Error('Nehym tutor with informed id');
     }
     return {id: idTutor};
-  }
+  },
+  findByIdAndUpdate: jest.fn()
 }))
 
 describe('Test Tutor: put', () => {
@@ -24,5 +25,12 @@ describe('Test Tutor: put', () => {
     const properties = ['name', 'phone', 'email', 'dateOfBirth', 'zipCode']
     properties.map((itens) => expect(response).toHaveProperty(itens)
     )
+  })
+
+  it('updateTutor', async ()=>{
+    const body = {name: "teste", phone:"6998568547", email: "teste@teste", dateOfBirth: "2000-12-12", zipCode: "61760000",}
+    const response = await new RepositoryTutors().updateTutor('uuiddhbfb0', body)
+
+    expect(response).toBe(body)
   })
 });
