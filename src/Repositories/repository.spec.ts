@@ -16,6 +16,7 @@ jest.mock('../Model/modelTutor', ()=>({
     }
     return null;
   }),
+  create: jest.fn((body: any) => body),
   findById: (idTutor: string)=>{
     const id = 'ba6cf261-b33f-431f-91f8-74dd0403e571'
     if (idTutor != id) {
@@ -42,10 +43,17 @@ describe('Test Tutor: Post', () => {
     expect(response).toBe(null);
   });
 
-  it('emailExists - ERROR', async () => {
+  it('emailExists - ERROR', async () => { //Error
     const email = 'teste@gmail.com.br';
     await expect(new RepositoryTutors().emailExists(email)).resolves.toBeNull();
   });
+
+  it('createTutor', async()=>{
+    const body = {"name": "Alex Abreu", "password": "p#llk145$", "phone": 69993638638, "email": "jon21as@paidepet.com", "date_of_birth": "2000-12-12", "zip_code": 61760000,}
+    const response = await new RepositoryTutors().createTutor(body)
+
+    expect(response).toBe(body)
+  })
 })
 
 
