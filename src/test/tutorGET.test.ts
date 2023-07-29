@@ -27,6 +27,9 @@ describe("Test for GET method", () => {
     const response = await request(app)
       .get('/tutors');
     expect(response.status).toBe(400);
+    expect(response.body).toEqual({
+        Msg: 'token not provided'
+    });
   });
 
   it('It should return 401 if it does have invalid authentication', async () => {
@@ -34,5 +37,8 @@ describe("Test for GET method", () => {
       .get('/tutors')
       .set("Authorization", `Bearer 123`);
     expect(response.status).toBe(401);
+    expect(response.body).toEqual({
+        Msg: 'incorrect token'
+    });
   });
 });

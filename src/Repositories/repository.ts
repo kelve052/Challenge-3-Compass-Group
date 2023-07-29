@@ -31,7 +31,7 @@ class UserRepositoryTutors {
   async existsTutor(idTutor: string) {
     const tutor = await tutorSchema.findById(idTutor);
     if (!tutor) {
-      throw new Error("Nehym tutor with informed id");
+      throw new Error("No tutor with informed id");
     }
     return tutor?.id;
   }
@@ -74,7 +74,7 @@ class UserRepositoryPets {
   async existsTutor(idTutor: string) {
     const tutor = await tutorSchema.findById(idTutor);
     if (!tutor) {
-      throw new Error("Nehym tutor with informed id");
+      throw new Error("No tutor with informed id");
     }
     return tutor?.id;
   }
@@ -105,7 +105,7 @@ class UserRepositoryPets {
       }
       tutor.pets.push(body);
       await tutor.save();
-  
+
       return tutor; 
     } catch (error) {
       throw new Error("Error creating a pet");
