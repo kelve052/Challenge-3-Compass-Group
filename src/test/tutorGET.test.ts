@@ -7,7 +7,7 @@ describe("Test for GET method", () => {
   let server: any;
 
   beforeAll((done) => {
-    server = start(3001);
+    server = start(5001);
     done();
   });
 
@@ -23,7 +23,7 @@ describe("Test for GET method", () => {
     expect(response.status).toBe(200);
   });
 
-  it('It should return 401 if it does not have authentication', async () => {
+  it('It should return 400 if it does not have authentication', async () => {
     const response = await request(app)
       .get('/tutors');
     expect(response.status).toBe(400);

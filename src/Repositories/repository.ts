@@ -86,16 +86,32 @@ class UserRepositoryPets {
       }
     });
   }
+  // async postPet(idTutor: any, body: any) {
+  //   try {
+  //     const newPet = await tutorSchema.findById(idTutor).then((tutor) => {
+  //       tutor?.pets.push(body);
+  //       tutor?.save();
+  //     });
+  //     return newPet;
+  //   } catch (error) {
+  //     throw new Error("error creating a pet");
+  //   }
+  // }
   async postPet(idTutor: any, body: any) {
     try {
-      await tutorSchema.findById(idTutor).then((tutor) => {
-        tutor?.pets.push(body);
-        tutor?.save();
-      });
+      const tutor = await tutorSchema.findById(idTutor);
+      if (!tutor) {
+        throw new Error("Tutor not found");
+      }
+      tutor.pets.push(body);
+      await tutor.save();
+  
+      return tutor; 
     } catch (error) {
-      throw new Error("error creating a pet");
+      throw new Error("Error creating a pet");
     }
   }
+  
   async putPet(idTutor: string, idPet: string, body: any) {
     try {
       await tutorSchema.findById(idTutor).then((tutor) => {
