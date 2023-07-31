@@ -45,4 +45,10 @@ const tutorSchema = new mongoose.Schema({
   },
 });
 
+tutorSchema.methods.toJSON = function(){
+  const tutorObject = this.toObject();
+  tutorObject.password = '*******'
+  return tutorObject;
+}
+
 export default mongoose.model("Tutor", tutorSchema);
