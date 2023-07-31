@@ -118,6 +118,7 @@ class UserRepositoryPets {
       await tutor.save();
 
       return tutor; 
+
     } catch (error) {
       throw new Error("Error creating a pet");
     }
