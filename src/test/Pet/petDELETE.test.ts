@@ -27,20 +27,20 @@ describe("Test for DELETE method on Tutors", () => {
         password: "12345",
         phone: "123456789",
         email: "petDELETE@test.com",
-        date_of_birth: "2000-12-12",
-        zip_code: "12345",
+        dateOfBirth: "2000-12-12",
+        zipCode: "12345",
       });
-    tutorId = tutorResponse.body.new_tutor._id;
+    tutorId = tutorResponse.body.newTutor._id;
 
     const petResponse = await request(app)
       .post(`/pet/${tutorId}`)
       .set("Authorization", authToken)
       .send({
-        name: "Test pet - DELTE",
+        name: "Test pet - DELETE",
         species: "dog",
         carry: "p",
         weight: 5,
-        date_of_birth: "2000-01-01",
+        dateOfBirth: "2000-01-01",
       });
     petId = petResponse.body.Pet._id;
   });

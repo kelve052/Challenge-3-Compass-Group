@@ -23,10 +23,10 @@ describe("Test for POST method on Tutors", () => {
       password: "12345",
       phone: "123456789",
       email: "tutorAUTH@test.com",
-      date_of_birth: "2000-12-12",
-      zip_code: "12345",
+      dateOfBirth: "2000-12-12",
+      zipCode: "12345",
     });
-    tutorId = response.body.new_tutor._id;
+    tutorId = response.body.newTutor._id;
   });
 
   afterEach(async () => {

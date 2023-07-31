@@ -23,7 +23,7 @@ jest.mock('../Model/modelTutor', ()=>({
   findById: (idTutor: string)=>{
     const id = 'ba6cf261-b33f-431f-91f8-74dd0403e571'
     if (idTutor != id) {
-      throw new Error('Nehym tutor with informed id');
+      throw new Error('No tutor with informed id');
     }
     return {id: idTutor};
   },
@@ -69,7 +69,7 @@ describe('Test Tutor: put', () => {
   })
 
   it('existsTutor - ERROR', async()=>{  //Error
-    await expect(new RepositoryTutors().existsTutor("id-fake")).rejects.toThrow('Nehym tutor with informed id');
+    await expect(new RepositoryTutors().existsTutor("id-fake")).rejects.toThrow('No tutor with informed id');
   })
 
   it('bodyValidation( checks if all required fields exist )', async ()=>{

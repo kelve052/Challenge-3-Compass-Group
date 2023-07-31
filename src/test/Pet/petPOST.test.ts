@@ -27,10 +27,10 @@ describe("Test for POST method on Pets", () => {
         password: "12345",
         phone: "123456789",
         email: "petPOST@test.com",
-        date_of_birth: "2000-12-12",
-        zip_code: "12345",
+        dateOfBirth: "2000-12-12",
+        zipCode: "12345",
       });
-    tutorId = response.body.new_tutor._id;
+    tutorId = response.body.newTutor._id;
     petId = null;
   });
 
@@ -50,7 +50,7 @@ describe("Test for POST method on Pets", () => {
       species: "dog",
       carry: "p",
       weight: 5,
-      date_of_birth: "2000-01-01",
+      dateOfBirth: "2000-01-01",
     };
     const response = await request(app)
       .post(`/pet/${tutorId}`)
@@ -67,7 +67,7 @@ describe("Test for POST method on Pets", () => {
       species: "dog",
       carry: "p",
       weight: "a",
-      date_of_birth: "2000-01-01",
+      dateOfBirth: "2000-01-01",
     };
     const response = await request(app)
       .post(`/pet/${tutorId}`)
@@ -82,7 +82,7 @@ describe("Test for POST method on Pets", () => {
       name: "Pet Test - POST",
       species: "dog",
       weight: "a",
-      date_of_birth: "2000-01-01",
+      dateOfBirth: "2000-01-01",
     };
     const response = await request(app)
       .post(`/pet/${tutorId}`)

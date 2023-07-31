@@ -27,10 +27,10 @@ describe("Test for DELETE method on Tutors", () => {
         password: "12345",
         phone: "123456789",
         email: "tutorDELETE@test.com",
-        date_of_birth: "2000-12-12",
-        zip_code: "12345",
+        dateOfBirth: "2000-12-12",
+        zipCode: "12345",
       });
-    tutorId = response.body.new_tutor._id;
+    tutorId = response.body.newTutor._id;
     petId = null;
   });
 
@@ -56,7 +56,7 @@ describe("Test for DELETE method on Tutors", () => {
         species: "dog",
         carry: "p",
         weight: 5,
-        date_of_birth: "2000-01-01",
+        dateOfBirth: "2000-01-01",
       });
     petId = PetResponse.body.Pet._id;
     const DeleteResponse = await request(app)

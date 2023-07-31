@@ -22,7 +22,7 @@ const petSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'pet weight'],
   },
-  date_of_birth: {
+  dateOfBirth: {
     type: Date,
     required: [true, 'pet date_of_birth'],
   },

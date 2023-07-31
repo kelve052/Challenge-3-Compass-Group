@@ -26,10 +26,10 @@ describe("Test for PUT method on Tutors", () => {
         password: "12345",
         phone: "123456789",
         email: "tutorPUT@test.com",
-        date_of_birth: "2000-12-12",
-        zip_code: "12345",
+        dateOfBirth: "2000-12-12",
+        zipCode: "12345",
       });
-    tutorId = response.body.new_tutor._id;
+    tutorId = response.body.newTutor._id;
   });
 
   afterEach(async () => {
@@ -44,8 +44,8 @@ describe("Test for PUT method on Tutors", () => {
       password: "321",
       phone: "987654321",
       email: "testPUT@test.com",
-      date_of_birth: "2000-12-12",
-      zip_code: "61760000",
+      dateOfBirth: "2000-12-12",
+      zipCode: "61760000",
     };
     const response = await request(app)
       .put(`/tutor/${tutorId}`)
@@ -60,8 +60,8 @@ describe("Test for PUT method on Tutors", () => {
       password: "321",
       phone: "abc",
       email: "testPUT@test.com",
-      date_of_birth: "2000-12-12",
-      zip_code: "61760000",
+      dateOfBirth: "2000-12-12",
+      zipCode: "61760000",
     };
     const response = await request(app)
       .put(`/tutor/${tutorId}`)
@@ -79,8 +79,8 @@ describe("Test for PUT method on Tutors", () => {
       password: "321",
       phone: "987654321",
       email: "testPUT@test.com",
-      date_of_birth: "2000-12-12",
-      zip_code: "61760000",
+      dateOfBirth: "2000-12-12",
+      zipCode: "61760000",
     };
     const response = await request(app)
       .put(`/tutor/${tutorId + 1}`)

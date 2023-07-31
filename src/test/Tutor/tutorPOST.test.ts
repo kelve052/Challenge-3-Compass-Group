@@ -29,12 +29,12 @@ describe("Test for POST method on Tutors", () => {
       password: "123",
       phone: "123456789",
       email: "teste@test.com",
-      date_of_birth: "2000-12-12",
-      zip_code: "61760000",
+      dateOfBirth: "2000-12-12",
+      zipCode: "61760000",
     };
 
     const response = await request(app).post("/tutors").send(tutorData);
-    tutorId = response.body.new_tutor._id;
+    tutorId = response.body.newTutor.id;
     expect(response.status).toBe(201);
   });
 
@@ -43,8 +43,8 @@ describe("Test for POST method on Tutors", () => {
       name: "John Doe",
       phone: "123456789",
       email: "teste@test.com",
-      date_of_birth: "2000-12-12",
-      zip_code: "61760000",
+      dateOfBirth: "2000-12-12",
+      zipCode: "61760000",
     };
 
     const response = await request(app).post("/tutors").send(tutorData);
@@ -60,14 +60,14 @@ describe("Test for POST method on Tutors", () => {
       password: "123",
       phone: "abc",
       email: "teste@test.com",
-      date_of_birth: "2000-12-12",
-      zip_code: "abc",
+      dateOfBirth: "2000-12-12",
+      zipCode: "abc",
     };
 
     const response = await request(app).post("/tutors").send(tutorData);
     expect(response.status).toBe(400);
     expect(response.body).toEqual({
-      Msg: 'Failed to create tutor: Tutor validation failed: phone: Cast to Number failed for value \"abc\" (type string) at path \"phone\", zip_code: Cast to Number failed for value \"abc\" (type string) at path \"zip_code\"',
+      Msg: 'Failed to create tutor: Tutor validation failed: phone: Cast to Number failed for value \"abc\" (type string) at path \"phone\", zipCode: Cast to Number failed for value \"abc\" (type string) at path \"zipCode\"',
     });
   });
 
@@ -77,8 +77,8 @@ describe("Test for POST method on Tutors", () => {
       password: "123",
       phone: "123456789",
       email: "testetest.com",
-      date_of_birth: "2000-12-12",
-      zip_code: "61760000",
+      dateOfBirth: "2000-12-12",
+      zipCode: "61760000",
     };
 
     const response = await request(app).post("/tutors").send(tutorData);
@@ -94,21 +94,21 @@ describe("Test for POST method on Tutors", () => {
       password: "123",
       phone: "123456789",
       email: "teste@test.com",
-      date_of_birth: "2000-12-12",
-      zip_code: "61760000",
+      dateOfBirth: "2000-12-12",
+      zipCode: "61760000",
     };
     const tutorData2 = {
       name: "John Doe",
       password: "123",
       phone: "123456789",
       email: "teste@test.com",
-      date_of_birth: "2000-12-12",
-      zip_code: "61760000",
+      dateOfBirth: "2000-12-12",
+      zipCode: "61760000",
     };
 
     const response1 = await request(app).post("/tutors").send(tutorData1);
     expect(response1.status).toBe(201);
-    tutorId = response1.body.new_tutor._id;
+    tutorId = response1.body.newTutor.id;
     const response2 = await request(app).post("/tutors").send(tutorData2);
     expect(response2.status).toBe(400);
     expect(response2.body).toEqual({

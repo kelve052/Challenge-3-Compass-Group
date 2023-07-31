@@ -18,7 +18,7 @@ const TutorsPost = async (req: Request, res: Response) => {
     const result = await new UserServicesTutor().create(req.body);
     return res
       .status(201)
-      .json({ Msg: "Successfully created tutor", new_tutor: result });
+      .json({ Msg: "Successfully created tutor", newTutor: result });
   } catch (error) {
     return res
       .status(400)

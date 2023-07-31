@@ -27,10 +27,10 @@ describe("Test for PUT method on Pets", () => {
         password: "12345",
         phone: "123456789",
         email: "petPUT@test.com",
-        date_of_birth: "2000-12-12",
-        zip_code: "12345",
+        dateOfBirth: "2000-12-12",
+        zipCode: "12345",
       });
-    tutorId = tutorResponse.body.new_tutor._id;
+    tutorId = tutorResponse.body.newTutor._id;
 
     const petResponse = await request(app)
       .post(`/pet/${tutorId}`)
@@ -40,7 +40,7 @@ describe("Test for PUT method on Pets", () => {
         species: "dog",
         carry: "p",
         weight: 5,
-        date_of_birth: "2000-01-01",
+        dateOfBirth: "2000-01-01",
       });
     petId = petResponse.body.Pet._id;
   });
@@ -61,7 +61,7 @@ describe("Test for PUT method on Pets", () => {
       species: "dog",
       carry: "m",
       weight: 7,
-      date_of_birth: "2000-01-01",
+      dateOfBirth: "2000-01-01",
     };
     const response = await request(app)
       .put(`/pet/${petId}/tutor/${tutorId}`)
@@ -76,7 +76,7 @@ describe("Test for PUT method on Pets", () => {
   //       species: "dog",
   //       carry: "m",
   //       weight: "a", // incorret field
-  //       date_of_birth: "2000-01-01",
+  //       dateOfBirth: "2000-01-01",
   //     };
   //     const response = await request(app)
   //       .put(`/pet/${petId}/tutor/${tutorId}`)
@@ -90,7 +90,7 @@ describe("Test for PUT method on Pets", () => {
   //       name: "Test pet - PUT (EDITED)",
   //       species: "dog",
   //       carry: "m",
-  //       date_of_birth: "2000-01-01",
+  //       dateOfBirth: "2000-01-01",
   //     };
   //     const response = await request(app)
   //       .put(`/pet/${petId}/tutor/${tutorId}`)

@@ -32,11 +32,11 @@ const tutorSchema = new mongoose.Schema({
     },
     message: ['invalid email'],
   },
-  date_of_birth: {
+  dateOfBirth: {
     type: Date,
     required: [true, 'tutor date_of_birth'],
   },
-  zip_code: {
+  zipCode: {
     type: Number,
     required: [true, 'tutor zip_code'],
   },
