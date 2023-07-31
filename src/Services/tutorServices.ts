@@ -1,11 +1,11 @@
-import UserRepository from "../Repositories/repository";
+import UserRepository from '../Repositories/repository';
 
-const repositoryTutors = UserRepository.UserRepositoryTutors;
+const RepositoryTutors = UserRepository.UserRepositoryTutors;
 
 class UserServicesTutor {
   async select() {
     try {
-      return await new repositoryTutors().getTutor();
+      return await new RepositoryTutors().getTutor();
     } catch (error) {
       throw error;
     }
@@ -14,8 +14,8 @@ class UserServicesTutor {
   async create(body: any) {
     try {
       const { email } = body;
-      await new repositoryTutors().emailExists(email); //check if any tutor already has the email
-      return await new repositoryTutors().createTutor(body);
+      await new RepositoryTutors().emailExists(email); // check if any tutor already has the email
+      return await new RepositoryTutors().createTutor(body);
     } catch (error) {
       throw error;
     }
@@ -23,18 +23,20 @@ class UserServicesTutor {
 
   async update(id: string, body: any) {
     try {
-      await new repositoryTutors().existsTutor(id); //check if tutor exists
-      const newBody = await new repositoryTutors().bodyValidation(body); // make sure the body has all required fields
-      return await new repositoryTutors().updateTutor(id, newBody);
+      await new RepositoryTutors().existsTutor(id); // check if tutor exists
+      const newBody = await new RepositoryTutors().bodyValidation(body);
+      // ^make sure the body has all required fields
+      return await new RepositoryTutors().updateTutor(id, newBody);
     } catch (error) {
       throw error;
     }
   }
+
   async delete(id: string) {
     try {
-      await new repositoryTutors().existsTutor(id);
-      await new repositoryTutors().petInTutor(id); //checks if the owner has pets
-      await new repositoryTutors().deleteTutor(id);
+      await new RepositoryTutors().existsTutor(id);
+      await new RepositoryTutors().petInTutor(id); // checks if the owner has pets
+      await new RepositoryTutors().deleteTutor(id);
     } catch (error) {
       throw error;
     }

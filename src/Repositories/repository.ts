@@ -1,6 +1,6 @@
-import tutorSchema from "../Model/modelTutor";
+import tutorSchema from '../Model/modelTutor';
 
-//Tutor ->
+// Tutor ->
 class UserRepositoryTutors {
   async getTutor() {
     const select = await tutorSchema.find();
@@ -9,11 +9,11 @@ class UserRepositoryTutors {
 
   async emailExists(email: string) {
     try {
-      await tutorSchema.findOne({ email }).then((tutor) => {
-        if (tutor) {
-          throw new Error("email already belongs to a tutor");
-        }
-      });
+      const tutor = await tutorSchema.findOne({ email });
+      if (tutor) {
+        throw new Error('email already belongs to a tutor');
+      }
+      return null;
     } catch (error) {
       throw error;
     }
@@ -37,11 +37,19 @@ class UserRepositoryTutors {
   }
 
   async bodyValidation(body: any) {
-    const { name, phone, email, date_of_birth, zip_code } = body;
-    if (!name || !phone || !email || !date_of_birth || !zip_code) {
-      throw new Error("missing or incorrect body fields");
+    const {
+      name, phone, email, dateOfBirth, zipCode,
+    } = body;
+    if (!name || !phone || !email || !dateOfBirth || !zipCode) {
+      throw new Error('missing or incorrect body fields');
     }
-    return { name, phone, email, date_of_birth, zip_code };
+    return {
+      name,
+      phone,
+      email,
+      dateOfBirth,
+      zipCode,
+    };
   }
 
   async updateTutor(id: string, body: any) {
@@ -52,13 +60,15 @@ class UserRepositoryTutors {
       throw error;
     }
   }
+
   async petInTutor(idTutor: string) {
     await tutorSchema.findById(idTutor).then((tutor) => {
-      if (!(tutor?.pets.length == 0)) {
-        throw new Error("Unable to delete an existing owner with pets");
+      if (!(tutor?.pets.length === 0)) {
+        throw new Error('Unable to delete an existing owner with pets');
       }
     });
   }
+
   async deleteTutor(id: string) {
     try {
       const deleteTutor = await tutorSchema.findByIdAndDelete(id);
@@ -69,7 +79,7 @@ class UserRepositoryTutors {
   }
 }
 
-//Pet ->
+// Pet ->
 class UserRepositoryPets {
   async existsTutor(idTutor: string) {
     const tutor = await tutorSchema.findById(idTutor);
@@ -78,11 +88,12 @@ class UserRepositoryPets {
     }
     return tutor?.id;
   }
+
   async existsPet(idTutor: string, idPet: string) {
     await tutorSchema.findById(idTutor).then((tutor) => {
       const petExists = tutor?.pets.some((pet) => pet.id === idPet);
       if (!petExists) {
-        throw new Error("The entered id does not belong to any pet");
+        throw new Error('The entered id does not belong to any pet');
       }
     });
   }
@@ -136,13 +147,13 @@ class UserRepositoryPets {
   }
 }
 
-//Auth ->
+// Auth ->
 class UserRepositoryAuth {
   async authenticateUser(email: string, password: string) {
     try {
       await tutorSchema.findOne({ email }).then((tutor) => {
-        if (!(tutor?.password == password)) {
-          throw new Error("Incorrect email or password fields");
+        if (!(tutor?.password === password)) {
+          throw new Error('Incorrect email or password fields');
         }
       });
     } catch (error) {

@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
-import { v4 as uuidv4 } from "uuid";
-import { petSchema } from "./modelPet";
+import mongoose from 'mongoose';
+import { v4 as uuidv4 } from 'uuid';
+import { petSchema } from './modelPet';
 
 const tutorSchema = new mongoose.Schema({
   _id: {
@@ -9,7 +9,7 @@ const tutorSchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    required: [true, "turor name"],
+    required: [true, 'turor name'],
   },
   password: {
     type: String,
@@ -17,32 +17,32 @@ const tutorSchema = new mongoose.Schema({
   },
   phone: {
     type: Number,
-    required: [true, "totor phone"],
+    required: [true, 'totor phone'],
   },
   email: {
     type: String,
-    required: [true, "tutor email"],
+    required: [true, 'tutor email'],
     unique: [true],
     validate: {
-      validator: function (value: string) {
+      validator(value: string) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(value);
       },
-      message: "The email entered is not a valid email",
+      message: 'The email entered is not a valid email',
     },
-    message: ["invalid email"],
+    message: ['invalid email'],
   },
   date_of_birth: {
     type: Date,
-    required: [true, "tutor date_of_birth"],
+    required: [true, 'tutor date_of_birth'],
   },
   zip_code: {
     type: Number,
-    required: [true, "tutor zip_code"],
+    required: [true, 'tutor zip_code'],
   },
   pets: {
     type: [petSchema],
   },
 });
 
-export default mongoose.model("Tutor", tutorSchema);
+export default mongoose.model('Tutor', tutorSchema);
