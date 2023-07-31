@@ -1,62 +1,78 @@
-# Challenge-2-Compass
-Micro service challenge of a veterinarian in node.(challenge 1 improvement)
+# Compass Challenge 3
+A Veterinary Clinic API built with Node.js and Express for managing veterinary services. A client hired Compass to build a new microservice for its veterinary franchise. This microservice will be used by all the clinics they own for internal client and attendances management.
 
-## Functionalities
+This project is based on the [original work of Kelve Oliveira](https://github.com/kelve052/Challenge-2-Compass).
 
-### Tutor
-- Route GET
-- Route POST
-- Route DELETE
-- Route PUT
+## Features
 
-### Pet
-- Route POST
-- Route de DELETE
-- Route de PUT
+<details>
+<summary><strong>Auth</strong></summary>
+<li> Route POST
+</details>
 
-### Auth
-- Route POST
+<details>
+<summary><strong>Tutor</strong></summary>
+<li> Route GET
+<li> Route POST
+<li> Route DELETE
+<li> Route PUT
+</details>
 
+<details>
+<summary><strong>Pet</strong></summary>
+<li> Route POST
+<li> Route DELETE
+<li> Route PUT
+</details>
 
-## running locally
+## Installation
 
-clone project
-
+To run this project locally, please follow these steps:
+1. Clone the repository:
 ```bash
-  git clone https://github.com/kelve052/Challenge-2-Compass.git
+git clone <repository-url>
 ```
 
-Enter the project directory
-
+2. Navigate to the project directory:
 ```bash
-  cd Challenge-2-Compass
+cd <project-directory>
 ```
 
-install dependencies
-
+3. Install dependencies:
 ```bash
-  npm install
+npm install
 ```
 
-start server
-
+4. Compile the files to JavaScript: 
 ```bash
-  npm start
+tsc
 ```
 
-## Variáveis de Ambiente
+5. Create a .env file in the root directory of the project and set the following variables:
+```bash
+MONGO_URI=<your-mongo-uri>
+JWT_SECRET=<your-jwt-secret>
+```
 
-To run this project you will need to add the following environment variables to your .env
+Start the development server:
+```bash
+npm start
+```
 
-- `MONGO_URI`
-- `JWT_SECRET`
+The server will start running on http://localhost:3000. You can access the application by opening this URL in your web browser.
 
-## Learnings
+## Documentation
+![image](https://github.com/felipecomarques/compass-challenge-01/assets/57302703/b2e27c7c-1f0b-473d-b252-214a01fc3a26)
 
-### English
+The API documentation is available through Swagger. You can access it by opening the following URL in your web browser after starting the development server: [http://localhost:3000/api-docs/](http://localhost:3000/api-docs/)
 
-I understood that there is a standard for commit, and that this makes it easier to understand more efficiently what the commit is about. I was also able to understand some layers that involve the project, and which tasks each one is responsible for managing. I learned how to implement swagger in the application. I also understood that business rules can sometimes be implemented directly in the model/schema.
+In the documentation, you can view request and response schemas, and even execute operations directly. It provides a convenient way to understand and interact with the API without the need for additional tools or clients.
 
-### Português
+## Developers
 
-Entendi que existe um padrão para commit, e que isso facilita entender de forma mais eficiente do que se trata o commit. Também pude entender algumas camadas que envolvem o projeto, e quais tarefas cada uma é responsável por gerenciar. Aprendi como implementar o swagger na aplicação. Também entendi que as regras de negócios às vezes podem ser implementadas diretamente no modelo/esquema.
+This project is a collaborative effort by the following developers:
+
+- [Felipe Marques](https://github.com/felipecomarques)
+- [Kelve Oliveira](https://github.com/kelve052)
+- [Raimundo Kennedy](https://github.com/kennedy354)
+

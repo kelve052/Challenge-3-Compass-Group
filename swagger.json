@@ -2,18 +2,33 @@
   "openapi": "3.0.0",
   "info": {
     "title": "API veterinary",
-    "description": "This is a veterinary API, using mongoDB, with GET POST PUT and DELETE features, both for tutors and pets, with implemented authentication functionality, being mandatory in almost all routes",
+    "description": "This is a veterinary API, using mongoDB, with GET, POST, PUT and DELETE features, both for tutors and pets, with implemented authentication functionality, being mandatory in almost all routes. It was developed by Kelve Oliveira, Felipe Marques, and Raimundo Kennedy, using Kelve Oliveira's base code.",
     "contact": {
       "name": "Support",
       "email": "kelveoliveira052@gmail.com"
     },
     "version": "1.0.0"
   },
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": "Everything about authentication"
+    },
+    {
+      "name": "Tutor",
+      "description": "Everything about tutors"
+    },
+    {
+      "name": "Pet",
+      "description": "Everything about pets"
+    }
+  ],
   "paths": {
     "/auth":{
       "post":{
-        "tags": ["Auth"],
+        "tags": ["Authentication"],
         "description": "Create token",
+        "summary": "Create a new token",
         "requestBody": {
           "description": "data needed to create token",
           "content": {
@@ -37,6 +52,7 @@
     "/tutors": {
       "get":{
         "tags": ["Tutor"],
+        "summary": "Retrieves all tutors",
         "description": "Registered tutors",
         "security": [
           {
@@ -58,15 +74,16 @@
             }
           },
           "400":{
-            "description": "error when searching for tutors"
+            "description": "Error when searching for tutors"
           }
         }
       },
       "post": {
         "tags": ["Tutor"],
         "description": "create new tutor",
+        "summary": "Create a new tutor",
         "requestBody": {
-          "description": "data needed to create the tutor",
+          "description": "Data needed to create the tutor",
           "content": {
             "application/json": {
               "schema": {
@@ -77,7 +94,7 @@
         },
         "responses": {
           "200":{
-            "description": "Successfully created tutor",
+            "description": "Successfully created a tutor.",
             "content":{
               "application/json":{
                 "schema":{
@@ -95,6 +112,7 @@
     "/tutor/{id}":{
       "put":{
         "tags": ["Tutor"],
+        "summary": "Updates a tutor",
         "description": "Update tutor",
         "security": [
           {
@@ -104,13 +122,13 @@
         "parameters":[{
           "name": "id",
           "in": "path",
-          "description": "Id belonging to a tutor",
+          "description": "ID belonging to a specific tutor.",
           "required": true,
           "type": "string",
           "format": "uuid"
         }],
         "requestBody": {
-          "description": "data needed to update the tutor",
+          "description": "Data needed to update the tutor",
           "content":{
             "application/json":{
               "schema": {
@@ -121,7 +139,7 @@
         },
         "responses":{
           "200":{
-            "description": "Msg: Update Sucefull",
+            "description": "Successfully updated a tutor.",
             "content":{
               "application/json":{
                 "schema":{
@@ -132,13 +150,14 @@
             }
           },
           "400":{
-            "description": "update failed"
+            "description": "Update failed"
           }
         }
       },
       "delete": {
         "tags": ["Tutor"],
-        "description": "Delte tutor",
+        "description": "Delete tutor",
+        "summary": "Deletes a tutor",
         "security": [
           {
             "bearerAuth": []
@@ -147,7 +166,7 @@
         "parameters":[{
           "name": "id",
           "in": "path",
-          "description": "Id belonging to a tutor",
+          "description": "ID belonging to a specific tutor.",
           "required": true,
           "type": "string",
           "format": "uuid"
@@ -166,6 +185,7 @@
       "post":{
         "tags": ["Pet"],
         "description": "Create new pet",
+        "summary": "Creates a pet and adds it to a tutor",
         "security": [
           {
             "bearerAuth": []
@@ -174,13 +194,13 @@
         "parameters":[{
           "name": "tutorId",
           "in": "path",
-          "description": "Id belonging to a tutor",
+          "description": "ID belonging to a specific tutor.",
           "required": true,
           "type": "string",
           "format": "uuid"
         }],
         "requestBody": {
-          "description": "data needed to create the pet",
+          "description": "Data needed to create the pet",
           "content":{
             "application/json":{
               "schema": {
@@ -191,7 +211,7 @@
         },
         "responses":{
           "200": {
-            "description": "Create pet sucefull",
+            "description": "Successfully created a pet.",
             "content":{
               "application/json": {
                 "schema": {
@@ -201,7 +221,7 @@
             }
           },
           "400": {
-            "description": "Failed to CREATE pet"
+            "description": "Failed to create a pet."
           }
         }
       }
@@ -210,13 +230,14 @@
       "put":{
         "tags": ["Pet"],
         "description": "Update pet",
+        "summary": "Updates a pet's info",
         "security":[{
           "bearerAuth": []
         }],
         "parameters":[{
           "name": "petId",
           "in": "path",
-          "description": "Id belonging to a pet",
+          "description": "ID belonging to a specific pet.",
           "required": true,
           "type": "string",
           "format": "uuid"
@@ -224,13 +245,13 @@
         {
           "name": "tutorId",
           "in": "path",
-          "description": "Id belonging to a tutor",
+          "description": "ID belonging to a specific tutor.",
           "required": true,
           "type": "string",
           "format": "uuid"
         }],
         "requestBody": {
-          "description": "data needed to update the pet",
+          "description": "Data needed to update the pet",
           "content":{
             "application/json":{
               "schema": {
@@ -241,7 +262,7 @@
         },
         "responses":{
           "200":{
-            "description": "Update pet sucefull",
+            "description": "Successfully updated a pet.",
             "content":{
               "application/json":{
                 "schema":{
@@ -252,13 +273,14 @@
             }
           },
           "400":{
-            "description": "Failed to UPDATE pet"
+            "description": "Failed to update a pet."
           }
         }
       },
       "delete":{
         "tags": ["Pet"],
-        "description": "Delte pet",
+        "description": "Delete pet",
+        "summary": "Deletes a pet from a tutor",
         "security": [
           {
             "bearerAuth": []
@@ -267,14 +289,14 @@
         "parameters":[{
           "name": "petId",
           "in": "path",
-          "description": "Id belonging to a pet",
+          "description": "ID belonging to a specific pet.",
           "required": true,
           "type": "string",
           "format": "uuid"
         }, {
           "name": "tutorId",
           "in": "path",
-          "description": "Id belonging to a tutor",
+          "description": "ID belonging to a specific tutor.",
           "required": true,
           "type": "string",
           "format": "uuid"
@@ -282,7 +304,7 @@
         "responses":{
           "200":{},
           "400":{
-            "description": "Error deleting pet"
+            "description": "Failed to delete a pet."
           }
         }
       }
