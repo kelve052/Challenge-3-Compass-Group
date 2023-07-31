@@ -1,6 +1,9 @@
 import Repository from "./repository";
 const RepositoryTutors = Repository.UserRepositoryTutors
 
+
+
+
 jest.mock('../Model/modelTutor', ()=>({
   find: ()=>{
     try {
@@ -24,7 +27,8 @@ jest.mock('../Model/modelTutor', ()=>({
     }
     return {id: idTutor};
   },
-  findByIdAndUpdate: jest.fn()
+  findByIdAndUpdate: jest.fn((body: any) => body),
+  findByIdAndDelete: jest.fn((body: any) => body),
 }))
 
 describe('Test Tutor: Get', ()=>{
@@ -34,7 +38,6 @@ describe('Test Tutor: Get', ()=>{
     expect(response).toBeInstanceOf(Array)
   })
 })
-
 
 describe('Test Tutor: Post', () => {
   it('emailExists (check if any tutor already has the email)', async () => {
@@ -89,5 +92,13 @@ describe('Test Tutor: put', () => {
     const response = await new RepositoryTutors().updateTutor('uuiddhbfb0', body)
 
     expect(response).toBe(body)
+  }),
+  describe('Test Tutor: Delete', ()=>{
+    it('deleteTutor ()', async ()=>{
+      const id:string = '766c00be-27e0-4b80-8fd8-85e09236b79f'
+      const response = await new RepositoryTutors().deleteTutor(id)
+      console.log(response, "-----")
+      expect(response).toBe("766c00be-27e0-4b80-8fd8-85e09236b79f")
+    })
   })
 });
