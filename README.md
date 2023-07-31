@@ -61,6 +61,43 @@ npm start
 
 The server will start running on http://localhost:3000. You can access the application by opening this URL in your web browser.
 
+## Tests
+
+Before running the tests, please ensure you have completed the following steps:
+1. Generate a token using the documentation
+
+2. Open the .env file in the root directory of your project.
+
+3. Add the following line to the .env file, replacing <your-token-here> with the appropriate token required for your application:
+```bash
+TOKEN=<your-token-here>
+```
+
+4. Next, make sure you have all the necessary dependencies installed by running:
+```bash
+npm install
+```
+
+#### Once the dependencies are installed and the token is set in the .env file, follow the steps below to run the tests:
+
+1. Open the app.js file in your code editor.
+
+2. Locate the line that starts the application, typically marked with start().
+
+3. Comment out the start() line by adding "//" at the beginning of the line. It should now look like this:
+```javascript
+// start();
+```
+4. Save the changes to the app.js file.
+
+5. Open your terminal or command prompt and navigate to the project's root directory.
+
+6. Run the following command to execute the tests:
+```bash
+npm test
+```
+Please note that commenting out the start() line is necessary during testing to avoid any conflicts that may arise from the application running concurrently with the tests. Remember to uncomment the line again if you wish to run the application normally.
+
 ## Documentation
 ![image](https://github.com/felipecomarques/compass-challenge-01/assets/57302703/b2e27c7c-1f0b-473d-b252-214a01fc3a26)
 

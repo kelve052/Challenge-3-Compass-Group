@@ -350,13 +350,13 @@
             "description": "email to be created",
             "example": "jonas@paidepet.com"
           },
-          "date_of_birth": {
+          "dateOfBirth": {
             "type": "string",
             "format": "date",
             "description": "date of birthday to be inserted in tutor",
             "example": "2000-12-12"
           },
-          "zip_code": {
+          "zipCode": {
             "type": "number",
             "description": "zip code to be inserted in tutor",
             "example": 61760000
@@ -381,13 +381,13 @@
             "description": "email to be created",
             "example": "jonas@paidepet.com"
           },
-          "date_of_birth": {
+          "dateOfBirth": {
             "type": "string",
             "format": "date",
             "description": "date of birthday to be inserted in tutor",
             "example": "2000-12-12"
           },
-          "zip_code": {
+          "zipCode": {
             "type": "number",
             "description": "zip code to be inserted in tutor",
             "example": 61760000
@@ -417,13 +417,13 @@
             "description": "email to be created",
             "example": "jonas@paidepet.com"
           },
-          "date_of_birth": {
+          "dateOfBirth": {
             "type": "string",
             "format": "date",
             "description": "date of birthday to be inserted in tutor",
             "example": "2000-12-12"
           },
-          "zip_code": {
+          "zipCode": {
             "type": "number",
             "description": "zip code to be inserted in tutor",
             "example": 61760000
@@ -453,7 +453,7 @@
             "description": "weight pet",
             "example": 5
           },
-          "date_of_birth":{
+          "dateOfBirth":{
             "type": "date",
             "description": "pet's date of birth",
             "example": "1993-12-12"
