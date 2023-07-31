@@ -7,22 +7,16 @@ const TutorsGet = async (req: Request, res: Response) => {
     const select = await new UserServicesTutor().select();
     res.status(200).json({ Msg: 'Registered tutors', Tutors: select });
   } catch (error) {
-    res
-      .status(400)
-      .json({ Msg: `Error when searching for tutors: ${error.message}` });
+    res.status(400).json({ Msg: `Error when searching for tutors: ${error.message}` });
   }
 };
 
 const TutorsPost = async (req: Request, res: Response) => {
   try {
     const result = await new UserServicesTutor().create(req.body);
-    return res
-      .status(201)
-      .json({ Msg: "Successfully created tutor", newTutor: result });
+    return res.status(201).json({ Msg: 'Successfully created tutor', newTutor: result });
   } catch (error) {
-    return res
-      .status(400)
-      .json({ Msg: `Failed to create tutor: ${error.message}` });
+    return res.status(400).json({ Msg: `Failed to create tutor: ${error.message}` });
   }
 };
 

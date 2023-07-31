@@ -31,7 +31,7 @@ class UserRepositoryTutors {
   async existsTutor(idTutor: string) {
     const tutor = await tutorSchema.findById(idTutor);
     if (!tutor) {
-      throw new Error("No tutor with informed id");
+      throw new Error('No tutor with informed id');
     }
     return tutor?.id;
   }
@@ -84,7 +84,7 @@ class UserRepositoryPets {
   async existsTutor(idTutor: string) {
     const tutor = await tutorSchema.findById(idTutor);
     if (!tutor) {
-      throw new Error("No tutor with informed id");
+      throw new Error('No tutor with informed id');
     }
     return tutor?.id;
   }
@@ -97,6 +97,7 @@ class UserRepositoryPets {
       }
     });
   }
+
   // async postPet(idTutor: any, body: any) {
   //   try {
   //     const newPet = await tutorSchema.findById(idTutor).then((tutor) => {
@@ -112,18 +113,17 @@ class UserRepositoryPets {
     try {
       const tutor = await tutorSchema.findById(idTutor);
       if (!tutor) {
-        throw new Error("Tutor not found");
+        throw new Error('Tutor not found');
       }
       tutor.pets.push(body);
       await tutor.save();
 
-      return tutor; 
-
+      return tutor;
     } catch (error) {
-      throw new Error("Error creating a pet");
+      throw new Error('Error creating a pet');
     }
   }
-  
+
   async putPet(idTutor: string, idPet: string, body: any) {
     try {
       await tutorSchema.findById(idTutor).then((tutor) => {

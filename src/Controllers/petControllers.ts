@@ -7,8 +7,7 @@ const PetPost = async (req: Request, res: Response) => {
     const idTutor = req.params.tutorId;
     const create = await new UserServicesPets().postPet(idTutor, req.body);
     const petCreate = create.pets[create.pets.length - 1];
-    res.status(201).json({ Msg: "Create pet sucefull", Pet: petCreate });
-
+    res.status(201).json({ Msg: 'Create pet sucefull', Pet: petCreate });
   } catch (error) {
     res.status(400).json({ Msg: `Failed to CREATE pet: ${error.message}` });
   }

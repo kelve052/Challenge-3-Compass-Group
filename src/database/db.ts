@@ -1,4 +1,3 @@
-
 // import mongoose from "mongoose";
 
 // const connectDB = (url: string) => {
@@ -6,7 +5,7 @@
 // };
 
 // export default connectDB;
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 let database: mongoose.Connection | null = null;
 
@@ -15,8 +14,7 @@ export const connectDB = (url: string) => {
     return database;
   }
 
-  return mongoose.connect(url, {
-  }).then((conn) => {
+  return mongoose.connect(url, {}).then((conn) => {
     database = conn.connection;
     return database;
   });
