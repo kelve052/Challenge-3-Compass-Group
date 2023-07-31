@@ -32,7 +32,7 @@ describe('Test for POST method on Tutors', () => {
     };
 
     const response = await request(app).post('/tutors').send(tutorData);
-    tutorId = response.body.newTutor.id;
+    tutorId = response.body.newTutor._id;
     expect(response.status).toBe(201);
   });
 
@@ -106,7 +106,7 @@ describe('Test for POST method on Tutors', () => {
 
     const response1 = await request(app).post('/tutors').send(tutorData1);
     expect(response1.status).toBe(201);
-    tutorId = response1.body.newTutor.id;
+    tutorId = response1.body.newTutor._id;
     const response2 = await request(app).post('/tutors').send(tutorData2);
     expect(response2.status).toBe(400);
     expect(response2.body).toEqual({
