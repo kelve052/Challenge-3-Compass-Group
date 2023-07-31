@@ -91,6 +91,7 @@ class UserRepositoryPets {
       await tutorSchema.findById(idTutor).then((tutor) => {
         tutor?.pets.push(body);
         tutor?.save();
+        return body
       });
     } catch (error) {
       throw new Error("error creating a pet");
