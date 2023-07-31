@@ -1,54 +1,31 @@
-import mongoose from "mongoose";
-import { v4 as uuidv4 } from "uuid";
-import { petSchema } from "./modelPet";
+import mongoose from 'mongoose';
+import { v4 as uuidv4 } from 'uuid';
 
-const tutorSchema = new mongoose.Schema({
+const petSchema = new mongoose.Schema({
   _id: {
     type: String,
     default: uuidv4,
   },
   name: {
     type: String,
-    required: [true, "turor name"],
+    required: [true, 'pet name'],
   },
-  password: {
+  species: {
     type: String,
-    required: true,
+    required: [true, 'pet species'],
   },
-  phone: {
+  carry: {
+    type: String,
+    required: [true, 'pet carry'],
+  },
+  weight: {
     type: Number,
-    required: [true, "totor phone"],
+    required: [true, 'pet weight'],
   },
-  email: {
-    type: String,
-    required: [true, "tutor email"],
-    unique: [true],
-    validate: {
-      validator: function (value: string) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(value);
-      },
-      message: "The email entered is not a valid email",
-    },
-    message: ["invalid email"],
-  },
-  date_of_birth: {
+  dateOfBirth: {
     type: Date,
-    required: [true, "tutor date_of_birth"],
-  },
-  zip_code: {
-    type: Number,
-    required: [true, "tutor zip_code"],
-  },
-  pets: {
-    type: [petSchema],
+    required: [true, 'pet date_of_birth'],
   },
 });
 
-tutorSchema.methods.toJSON = function(){
-  const tutorObject = this.toObject();
-  tutorObject.password = '*******'
-  return tutorObject;
-}
-
-export default mongoose.model("Tutor", tutorSchema);
+export { petSchema };
