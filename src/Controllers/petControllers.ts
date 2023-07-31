@@ -5,8 +5,10 @@ import UserServicesPets from '../Services/petServices';
 const PetPost = async (req: Request, res: Response) => {
   try {
     const idTutor = req.params.tutorId;
-    const create = await new UserServicesPets().postPet(idTutor, req.body);
-    res.status(201).json({ Msg: 'Create pet sucefull', Pet: create });
+    const create = await new userServicesPets().postPet(idTutor, req.body);
+    const petCreate = create.pets[create.pets.length - 1];
+    res.status(201).json({ Msg: "Create pet sucefull", Pet: petCreate });
+
   } catch (error) {
     res.status(400).json({ Msg: `Failed to CREATE pet: ${error.message}` });
   }
